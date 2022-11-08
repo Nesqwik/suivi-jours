@@ -1,6 +1,8 @@
 defmodule App.Widgets.Menu do
   use Widgets
 
+  alias App.Router.Navigate
+
   @name "menu"
   def menu_w(_data, _props, _context) do
     %{
@@ -27,6 +29,27 @@ defmodule App.Widgets.Menu do
               "type" => "container"
             },
             "type" => "flexible"
+          },
+          %{
+            "type" => "flex",
+            "children" => [
+              %{
+                "type" => "actionable",
+                "child" => %{"type" => "icon", "value" => "edit_sharp"},
+                "onPressed" =>
+                  App.Listeners.RouterListener.new_navigate(
+                    props: %Navigate{to: App.Widgets.Worked.page()}
+                  )
+              },
+              %{
+                "type" => "actionable",
+                "child" => %{"type" => "icon", "value" => "info_sharp"},
+                "onPressed" =>
+                  App.Listeners.RouterListener.new_navigate(
+                    props: %Navigate{to: App.Widgets.Stats.page()}
+                  )
+              }
+            ]
           }
         ],
         "crossAxisAlignment" => "center",

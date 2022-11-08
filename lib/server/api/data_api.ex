@@ -47,9 +47,11 @@ defmodule Api.DataApi do
   end
 
   def delete_doc(api, coll, doc_id, opts \\ []) do
+    url = Map.get(api, "url")
+
     Finch.build(
       :delete,
-      "#{api.url}/app/colls/#{coll}/docs/#{doc_id}",
+      "#{url}/app/colls/#{coll}/docs/#{doc_id}",
       headers(api)
     )
     |> send_request(opts)
@@ -113,9 +115,13 @@ defmodule Api.DataApi do
   end
 
   def to_map(struct) when is_struct(struct) do
-    struct
-    |> Map.from_struct()
-    |> to_map()
+    if struct.__struct__ in [Date, DateTime, NaiveDateTime] do
+      struct
+    else
+      struct
+      |> Map.from_struct()
+      |> to_map()
+    end
   end
 
   def to_map(map) when is_map(map) do

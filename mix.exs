@@ -24,7 +24,8 @@ defmodule TemplateElixir.MixProject do
     [
       {:plug_cowboy, "~> 2.0"},
       {:jason, "~> 1.4"},
-      {:finch, "~> 0.13.0"}
+      {:finch, "~> 0.13.0"},
+      {:timex, "~> 3.7"}
     ]
   end
 end

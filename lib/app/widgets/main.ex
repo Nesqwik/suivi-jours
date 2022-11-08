@@ -8,7 +8,7 @@ defmodule App.Widgets.Main do
     %{
       "children" => [
         Widgets.Menu.new_menu(),
-        Widgets.Home.new_home()
+        Widgets.Router.new_router(coll: App.Router.coll(), query: App.Router.current_page_query())
       ],
       "crossAxisAlignment" => "center",
       "direction" => "vertical",
